@@ -5,14 +5,15 @@ import Todo from "./Todo";
 // safe area stops going an app elements to the top nothch on iphone
 const App = () => {
 
-    const [input, setInput] = useState('');
-    const [todos, setTodos] = useState([]);
+    const [description, setDescription] = useState('');
+    const [amount, setAmount] = useState(0);
+    const [gigs, setGigs] = useState([
+        {
+            description: "Freelance",
+            amount: 4342343,
+        }
+    ]);
 
-    const addTodo = () => {
-        setTodos([input, ...todos]);
-        setInput("");
-        console.log("here")
-    };
 
   return (
       // safe area
@@ -21,15 +22,10 @@ const App = () => {
           <View>
               <Text style={styles.titleText}>Lets build amazing app</Text>
           </View>
+          <TextInput style={styles.app__input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
 
-            <ScrollView>
-                {todos?.map(todo => (
-                    <Todo key={todo} title={todo} />
-                ))}
-            </ScrollView>
-
-            <TextInput style={styles.app__input} defaultValue={input} onChangeText={text => setInput(text)} placeholder="Rookas"/>
-            <Button title="Add TODO" onPress={addTodo}/>
+            <TextInput style={styles.app__input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job 🚀"/>
+            {/*<Button title="Add TODO" onPress={addTodo}/>*/}
       </SafeAreaView>
   );
 }
@@ -43,7 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 999,
         margin: 20,
         height: 40,
-        borderColor: "red",
+        borderColor: "lightgray",
         borderWidth: 1,
     },
 
