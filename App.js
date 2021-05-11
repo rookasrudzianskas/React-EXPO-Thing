@@ -22,6 +22,8 @@ const App = () => {
 
     // description state
     const [description, setDescription] = useState('');
+    const [labels, setLabels] = useState([]);
+    const [dataPoints, setDataPoints] = useState('');
     // amount state
     const [amount, setAmount] = useState();
     // total state
@@ -33,7 +35,13 @@ const App = () => {
             amount: 434,
             timestamp: new Date(),
         },
+        {
+            description: "Freelance",
+            amount: 434,
+            timestamp: new Date(),
+        },
     ]);
+
 
     useEffect(() => {
         // we run this once the gigs changes, so the new one is added, it runs down and sets the new Total with reducer
@@ -75,16 +83,19 @@ const App = () => {
                       labels: ['MON', 'TUE', 'WED', 'THU', 'FRI'],
                       datasets: [{
                           data: [
-                             gigs[0].amount * 100,
-                              Math.random() * 100,
-
+                             // we take the first elemet from the gigs array (state)
+                             Math.random() * 100,
+                             Math.random() * 100,
+                             Math.random() * 100,
+                             Math.random() * 100,
+                             Math.random() * 100,
                           ]
                       }]
                   }}
                   width={Dimensions.get('window').width} // from react-native
                   height={220}
                   yAxisLabel={'$'}
-                  yAxisSuffix="k"
+                  // yAxisSuffix="k"
                   yAxisInterval={1}
                   chartConfig={{
                       backgroundColor: '#e26a00',
