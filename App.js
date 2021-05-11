@@ -31,6 +31,7 @@ const App = () => {
         {
             description: "Freelance",
             amount: 434,
+            timestamp: new Date(),
         },
     ]);
 
@@ -74,10 +75,7 @@ const App = () => {
                       labels: ['MON', 'TUE', 'WED', 'THU', 'FRI'],
                       datasets: [{
                           data: [
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
+                             gigs[0].amount * 100,
                               Math.random() * 100,
 
                           ]
@@ -90,8 +88,8 @@ const App = () => {
                   yAxisInterval={1}
                   chartConfig={{
                       backgroundColor: '#e26a00',
-                      backgroundGradientFrom: 'black',
-                      backgroundGradientTo: 'black',
+                      backgroundGradientFrom: 'green',
+                      backgroundGradientTo: 'blue',
                       decimalPlaces: 1, // optional, defaults to 2dp
                       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
