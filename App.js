@@ -14,11 +14,12 @@ import {
 const App = () => {
 
     const chartConfig = {
-        backgroundGradientFrom: '#1E2923',
+        backgroundGradientFrsom: '#1E2923',
         backgroundGradientTo: '#08130D',
         color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
         strokeWidth: 2 // optional, default 3
     }
+
     // description state
     const [description, setDescription] = useState('');
     // amount state
@@ -60,28 +61,10 @@ const App = () => {
           <View>
               <Text style={styles.titleText}>Lets build amazing app</Text>
           </View>
-            <Text>Total Income: ${total} 🤑</Text>
-            {/* this uses onChangePress to set the value to the state. and the value is from the description state*/}
-            <TextInput style={styles.input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
-
-          {/* this uses onChangePress to set the value to the state. and the value is from the amount state*/}
-          {/* also we change the keyboard to numeric*/}
-            <TextInput style={styles.input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job in $USD 🚀"/>
-            {/* button is disabled, if thre is noting in amount and description states*/}
-            {/* then we press, we get to the addGig function*/}
-            <Button disabled={!amount && !description} title="Add Gig 🚀" onPress={addGig}/>
-      {/*     disabled if there is nothing in the state of amount and in the state of description*/}
-      {/* showing all the jobs with amount of money in here*/}
-      {/*    mapping per gigs sate, and outputting gig.something*/}
-          {gigs.map(gig => (
-              <View>
-                  <Text>{gig.description}</Text>
-                  <Text>${gig.amount}</Text>
-              </View>
-          ))}
 
 
           <View>
+
               <Text>
                   Bezier Line Chart
               </Text>
@@ -119,6 +102,28 @@ const App = () => {
                   }}
               />
           </View>
+
+            <Text>Total Income: ${total} 🤑</Text>
+            {/* this uses onChangePress to set the value to the state. and the value is from the description state*/}
+            <TextInput style={styles.input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
+
+          {/* this uses onChangePress to set the value to the state. and the value is from the amount state*/}
+          {/* also we change the keyboard to numeric*/}
+            <TextInput style={styles.input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job in $USD 🚀"/>
+            {/* button is disabled, if thre is noting in amount and description states*/}
+            {/* then we press, we get to the addGig function*/}
+            <Button disabled={!amount && !description} title="Add Gig 🚀" onPress={addGig}/>
+      {/*     disabled if there is nothing in the state of amount and in the state of description*/}
+      {/* showing all the jobs with amount of money in here*/}
+      {/*    mapping per gigs sate, and outputting gig.something*/}
+          {gigs.map(gig => (
+              <View>
+                  <Text>{gig.description}</Text>
+                  <Text>${gig.amount}</Text>
+              </View>
+          ))}
+
+
       </SafeAreaView>
   );
 }
