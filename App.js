@@ -8,7 +8,7 @@ const App = () => {
       <SafeAreaView>
         {/* divs, in here it is views*/}
         <View  >
-          <Text style={styles.firstLabel}>Hello World</Text>
+          <Text style={styles.firstLabel}>I am TODO</Text>
         </View>
 
       </SafeAreaView>
@@ -17,7 +17,6 @@ const App = () => {
 
 const styles = StyleSheet.create({
     firstLabel: {
-        backgroundColor: "red",
         fontSize: 30,
         fontWeight: "bold",
     },
