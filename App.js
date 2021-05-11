@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {StyleSheet, View, SafeAreaView, Text} from "react-native";
+import Todo from "./Todo";
 
 // safe area stops going an app elements to the top nothch on iphone
 const App = () => {
@@ -8,7 +9,11 @@ const App = () => {
       <SafeAreaView>
         {/* divs, in here it is views*/}
         <View  >
-          <Text style={styles.firstLabel}>I am TODO app</Text>
+          <Todo title="Go To get bananas"/>
+          <Todo title="Go to sleep" />
+          <Todo title="Go to sleep"/>
+          <Todo title="Go to sleep"/>
+          <Todo title="Go to sleep"/>
         </View>
 
       </SafeAreaView>
