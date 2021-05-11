@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from "react";
+import {StyleSheet, View, SafeAreaView, Text} from "react-native";
 
-export default function App() {
+// safe area stops going an app elements to the top nothch on iphone
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Hello, Rokas 🚀 🔥</Text>
-      <StatusBar style="auto" />
-    </View>
+      // safe area
+      <SafeAreaView>
+        {/* divs, in here it is views*/}
+        <View style={styles.firstLabel} >
+          <Text>Hello World</Text>
+        </View>
+
+      </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    firstLabel: {
+        backgroundColor: "red"
+    }
+})
+
+export default App;
