@@ -31,7 +31,7 @@ const App = () => {
         {
             description: "Freelance",
             amount: 434,
-        }
+        },
     ]);
 
     useEffect(() => {
@@ -47,6 +47,7 @@ const App = () => {
       setGigs([...gigs, {
           description: description,
           amount: amount,
+          timestamp: new Date(),
       }]);
       // erases what we have typed
       setDescription("");
@@ -70,9 +71,13 @@ const App = () => {
               </Text>
               <LineChart
                   data={{
-                      labels: ['25/10/21', '26/10/21', '27/10/21', '28/10/21', '29/10/21'],
+                      labels: ['MON', 'TUE', 'WED', 'THU', 'FRI'],
                       datasets: [{
                           data: [
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
                               Math.random() * 100,
 
                           ]
@@ -85,12 +90,18 @@ const App = () => {
                   yAxisInterval={1}
                   chartConfig={{
                       backgroundColor: '#e26a00',
-                      backgroundGradientFrom: '#fb8c00',
-                      backgroundGradientTo: '#ffa726',
+                      backgroundGradientFrom: 'black',
+                      backgroundGradientTo: 'black',
                       decimalPlaces: 1, // optional, defaults to 2dp
                       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                       style: {
                           borderRadius: 16
+                      },
+                      propsForDots: {
+                          r: 6,
+                          strokeWidth: "2",
+                          stroke: '#ffa726'
                       }
                   }}
                   bezier
