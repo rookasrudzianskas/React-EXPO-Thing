@@ -1,16 +1,17 @@
 import React, {Component, useState} from "react";
-import {StyleSheet, View, SafeAreaView, Text, TextInput, Button, TouchableOpacity} from "react-native";
+import {StyleSheet, View, SafeAreaView, Text, TextInput, Button, TouchableOpacity, ScrollView} from "react-native";
 import Todo from "./Todo";
 
 // safe area stops going an app elements to the top nothch on iphone
 const App = () => {
 
-    const [input, setInput] = useState();
-    const [todos, setTodos] = useState();
+    const [input, setInput] = useState('');
+    const [todos, setTodos] = useState([]);
 
     const addTodo = () => {
         setTodos([input, ...todos]);
         setInput("");
+        console.log("here")
     };
 
   return (
@@ -21,11 +22,14 @@ const App = () => {
               <Text style={styles.titleText}>Lets build amazing app</Text>
           </View>
 
-          {/*{todos.map(todo => (*/}
-          {/*    <Todo title={todo} />*/}
-          {/*))}*/}
-            <TextInput style={styles.app__input} value={input} onChangeText={text => setInput(text)} placeholder="Rookas"/>
-            <TouchableOpacity title="Add TODO" onPress={addTodo}/>
+            <ScrollView>
+                {todos?.map(todo => (
+                    <Todo key={todo} title={todo} />
+                ))}
+            </ScrollView>
+
+            <TextInput style={styles.app__input} defaultValue={input} onChangeText={text => setInput(text)} placeholder="Rookas"/>
+            <Button title="Add TODO" onPress={addTodo}/>
       </SafeAreaView>
   );
 }
