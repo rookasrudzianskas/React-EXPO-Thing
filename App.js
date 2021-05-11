@@ -70,26 +70,24 @@ const App = () => {
               </Text>
               <LineChart
                   data={{
-                      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                      labels: ['25/10/21', '26/10/21', '27/10/21', '28/10/21', '29/10/21'],
                       datasets: [{
                           data: [
                               Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100
+
                           ]
                       }]
                   }}
                   width={Dimensions.get('window').width} // from react-native
                   height={220}
                   yAxisLabel={'$'}
+                  yAxisSuffix="k"
+                  yAxisInterval={1}
                   chartConfig={{
                       backgroundColor: '#e26a00',
                       backgroundGradientFrom: '#fb8c00',
                       backgroundGradientTo: '#ffa726',
-                      decimalPlaces: 2, // optional, defaults to 2dp
+                      decimalPlaces: 1, // optional, defaults to 2dp
                       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                       style: {
                           borderRadius: 16
