@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import {StyleSheet, View, SafeAreaView, Text, TextInput, Button, TouchableOpacity, ScrollView} from "react-native";
 import Todo from "./Todo";
 
@@ -7,12 +7,17 @@ const App = () => {
 
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState();
+    const [total, setTotal] = useState(0)
     const [gigs, setGigs] = useState([
         {
             description: "Freelance",
-            amount: 4342343,
+            amount: 434,
         }
     ]);
+
+    useEffect(() => {
+        setTotal(gigs.reduce((total, gig) => total+gig.amount, 0));
+    }, [gigs]);
 
     const addGig = () => {
       //   it sets to the previous things, and the new updated ones
@@ -33,10 +38,10 @@ const App = () => {
           <View>
               <Text style={styles.titleText}>Lets build amazing app</Text>
           </View>
-            <Text>Total Income: 3432$ 🤑</Text>
-            <TextInput style={styles.app__input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
+            <Text>Total Income: ${total} 🤑</Text>
+            <TextInput style={styles.input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
 
-            <TextInput style={styles.app__input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job in $USD 🚀"/>
+            <TextInput style={styles.input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job in $USD 🚀"/>
             <Button disabled={!amount && !description} title="Add Gig 🚀" onPress={addGig}/>
       {/*     disabled if there is nothing in the state of amount and in the state of description*/}
 
@@ -55,7 +60,8 @@ const styles = StyleSheet.create({
         fontSize: 50,
         fontWeight: "bold",
     },
-    app__input: {
+    input: {
+        marginBottom: 30,
         margin: 20,
         height: 40,
         borderColor: "lightgray",
