@@ -19,10 +19,13 @@ const App = () => {
         color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
         strokeWidth: 2 // optional, default 3
     }
-
+    // description state
     const [description, setDescription] = useState('');
+    // amount state
     const [amount, setAmount] = useState();
-    const [total, setTotal] = useState(0)
+    // total state
+    const [total, setTotal] = useState(0);
+    // works state is array of objects
     const [gigs, setGigs] = useState([
         {
             description: "Freelance",
@@ -31,16 +34,20 @@ const App = () => {
     ]);
 
     useEffect(() => {
+        // we run this once the gigs changes, so the new one is added, it runs down and sets the new Total with reducer
+        // it takes the valu to which add, so in this case total and what to add. so what to add is the gig.amount of money from the state
+        // and it just returns the new SetTotal with updated value
         setTotal(gigs.reduce((total, gig) => total+Number(gig.amount), 0));
     }, [gigs]);
 
     const addGig = () => {
       //   it sets to the previous things, and the new updated ones
+      //  to keep the old ones, it firstly adds the old ones, and then the new one in the end
       setGigs([...gigs, {
           description: description,
           amount: amount,
       }]);
-
+      // erases what we have typed
       setDescription("");
       setAmount("");
     }
@@ -54,12 +61,18 @@ const App = () => {
               <Text style={styles.titleText}>Lets build amazing app</Text>
           </View>
             <Text>Total Income: ${total} 🤑</Text>
+            {/* this uses onChangePress to set the value to the state. and the value is from the description state*/}
             <TextInput style={styles.input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
 
+          {/* this uses onChangePress to set the value to the state. and the value is from the amount state*/}
+          {/* also we change the keyboard to numeric*/}
             <TextInput style={styles.input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job in $USD 🚀"/>
+            {/* button is disabled, if thre is noting in amount and description states*/}
+            {/* then we press, we get to the addGig function*/}
             <Button disabled={!amount && !description} title="Add Gig 🚀" onPress={addGig}/>
       {/*     disabled if there is nothing in the state of amount and in the state of description*/}
-
+      {/* showing all the jobs with amount of money in here*/}
+      {/*    mapping per gigs sate, and outputting gig.something*/}
           {gigs.map(gig => (
               <View>
                   <Text>{gig.description}</Text>
@@ -110,6 +123,7 @@ const App = () => {
   );
 }
 
+// styles
 const styles = StyleSheet.create({
     titleText: {
         fontSize: 50,
