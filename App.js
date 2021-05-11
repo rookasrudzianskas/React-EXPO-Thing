@@ -8,7 +8,7 @@ const App = () => {
       <SafeAreaView>
         {/* divs, in here it is views*/}
         <View  >
-          <Text style={styles.firstLabel}>I am TODO</Text>
+          <Text style={styles.firstLabel}>I am TODO app</Text>
         </View>
 
       </SafeAreaView>
