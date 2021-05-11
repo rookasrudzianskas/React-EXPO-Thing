@@ -6,7 +6,7 @@ import Todo from "./Todo";
 const App = () => {
 
     const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState();
     const [gigs, setGigs] = useState([
         {
             description: "Freelance",
@@ -19,8 +19,11 @@ const App = () => {
       setGigs([...gigs, {
           description: description,
           amount: amount,
-      }])
-    };
+      }]);
+
+      setDescription("");
+      setAmount("");
+    }
 
 
   return (
@@ -33,7 +36,8 @@ const App = () => {
           <TextInput style={styles.app__input} defaultValue={description} onChangeText={text => setDescription(text)} placeholder="Enter the description you did 🚀"/>
 
             <TextInput style={styles.app__input} keyboardType='numeric' defaultValue={amount} onChangeText={text => setAmount(text)} placeholder="Enter the amount you go from the job in $USD 🚀"/>
-            <Button title="Add Gig 🚀" onPress={addGig}/>
+            <Button disabled={!amount && !description} title="Add Gig 🚀" onPress={addGig}/>
+      {/*     disabled if there is nothing in the state of amount and in the state of description*/}
       </SafeAreaView>
   );
 }
