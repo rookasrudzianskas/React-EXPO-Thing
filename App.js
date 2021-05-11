@@ -1,9 +1,24 @@
 import React, {Component, useEffect, useState} from "react";
-import {StyleSheet, View, SafeAreaView, Text, TextInput, Button, TouchableOpacity, ScrollView} from "react-native";
+import {StyleSheet, Dimensions, View, SafeAreaView, Text, TextInput, Button, TouchableOpacity, ScrollView} from "react-native";
 import Todo from "./Todo";
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph,
+    StackedBarChart
+} from 'react-native-chart-kit'
 
 // safe area stops going an app elements to the top nothch on iphone
 const App = () => {
+
+    const chartConfig = {
+        backgroundGradientFrom: '#1E2923',
+        backgroundGradientTo: '#08130D',
+        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+        strokeWidth: 2 // optional, default 3
+    }
 
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState();
@@ -16,7 +31,7 @@ const App = () => {
     ]);
 
     useEffect(() => {
-        setTotal(gigs.reduce((total, gig) => total+gig.amount, 0));
+        setTotal(gigs.reduce((total, gig) => total+Number(gig.amount), 0));
     }, [gigs]);
 
     const addGig = () => {
@@ -51,6 +66,46 @@ const App = () => {
                   <Text>${gig.amount}</Text>
               </View>
           ))}
+
+
+          <View>
+              <Text>
+                  Bezier Line Chart
+              </Text>
+              <LineChart
+                  data={{
+                      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                      datasets: [{
+                          data: [
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100
+                          ]
+                      }]
+                  }}
+                  width={Dimensions.get('window').width} // from react-native
+                  height={220}
+                  yAxisLabel={'$'}
+                  chartConfig={{
+                      backgroundColor: '#e26a00',
+                      backgroundGradientFrom: '#fb8c00',
+                      backgroundGradientTo: '#ffa726',
+                      decimalPlaces: 2, // optional, defaults to 2dp
+                      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                      style: {
+                          borderRadius: 16
+                      }
+                  }}
+                  bezier
+                  style={{
+                      marginVertical: 8,
+                      borderRadius: 16
+                  }}
+              />
+          </View>
       </SafeAreaView>
   );
 }
