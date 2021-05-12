@@ -35,9 +35,24 @@ const App = () => {
       //  432423432432: 2000
       //  this is the array of objects
       //  with moment, we get the data and subtract, the days from the array, so basically means, removing them
-        {[moment()]: 2000},
+        {[moment().format('LL')]: 2000},
+        {[moment().subtract(1, 'days')]: 1500},
         {[moment().subtract(1, 'days')]: 2500},
+        {[moment().subtract(1, 'days')]: 3500},
+        {[moment().subtract(2, 'days')]: 4500},
+        {[moment().subtract(2, 'days')]: 5500},
     ])
+
+    // grouping is going to make, that if we have the same days and the amounts added at that day is going to have sum of all the previrous amounts,
+    // Like following and form make it to smaller aray
+    // {[moment().subtract(1, 'days')]: 1500},
+    // {[moment().subtract(2, 'days')]: 4500},
+
+    const groupBy = () => {
+        
+    }
+
+
     // works state is array of objects
     const [gigs, setGigs] = useState([
         {
@@ -51,7 +66,31 @@ const App = () => {
             timestamp: new Date(),
         },
     ]);
-    console.log("DEBUG 👉", data)
+
+    //==========================================================================
+
+    const getDates = () => data.map(pair => Object.keys(pair)[0]);
+        // this function should get the [momemnt()] <-> date as in the section mentioned below, the array from the dates just
+        // our final result from this function should be to return the [date1, date2, date3, date4]
+        // in this line we need to get the key from the array of objects, just the key, which is the date
+        // this is going to map per all the data objects in data array, and get the keys of each one, and return the array, so we grab the 1element, which is 0
+        // example, what it returns ['10/29/2021'] -> '10/29/2021']
+    //==========================================================================
+
+    //==========================================================================
+
+    const getAmounts = () => data.map(pair => Object.values(pair)[0]);
+    // this function should get the [2000] <-> amount as in the section mentioned below, the array from the amounts just
+    // our final result from this function should be to return the [34343, 3213, 343243, 34324]
+    // in this line we need to get the key from the array of objects, just the key, which is the amount
+    // this is going to map per all the amount objects in data array, and get the keys of each one, and return the array, so we grab the 1element, which is 0
+    // example, what it returns ['231232'] -> '342341'
+    // the values, instead of keys, because we have to get the keys
+    //==========================================================================
+
+    console.log("DEBUG 👉", data);
+    console.log("The dates 🔥", getDates());
+    console.log("The amounts 🚀", getAmounts());
 
 
     useEffect(() => {
@@ -97,23 +136,16 @@ const App = () => {
               </Text>
               <LineChart
                   data={{
-                      labels: ['MON', 'TUE', 'WED', 'THU', 'FRI'],
+                      labels: getDates(),
                       datasets: [{
-                          data: [
-                              // we take the first elemet from the gigs array (state)
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                              Math.random() * 100,
-                          ]
+                          data: getAmounts()
                       }
                       ]
                   }}
                   width={Dimensions.get('window').width} // from react-native
                   height={220}
                   yAxisLabel={'$'}
-                  // yAxisSuffix="k"
+                  yAxisSuffix="k"
                   yAxisInterval={1}
                   chartConfig={{
                       backgroundColor: '#e26a00',
