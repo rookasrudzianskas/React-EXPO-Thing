@@ -136,8 +136,14 @@ const App = () => {
       setGigs([...gigs, {
           description: description,
           amount: amount,
-          timestamp: new Date(),
       }]);
+      setData([
+          ...data,
+          {
+          date: moment().format('LL'),
+              amount: amount
+          }
+      ]);
       // erases what we have typed
       setDescription("");
       setAmount("");
