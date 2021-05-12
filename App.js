@@ -107,10 +107,12 @@ const App = () => {
             // takes the second value, the amount
             // this is going to get us the total
             const total = entry[1].reduce((total, pair) => total + pair.amount, 0);
-            transformedArray.push({date: entry[0], amount: total })
+            transformedArray.push({date: moment(entry[0]).format('DD'), amount: total })
         })
+        // takes one and the second value, we make comparison, and the winner takes 1st place
+        const sortedArray = transformedArray.sort((a, b) => moment(a['date']).diff(moment(b['date'])))
         // this will give me array of key and value pairs
-        return transformedArray;
+        return sortedArray;
     }
 
 
