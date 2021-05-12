@@ -9,6 +9,7 @@ import {
     ContributionGraph,
     StackedBarChart
 } from 'react-native-chart-kit'
+import moment from "moment";
 
 // safe area stops going an app elements to the top nothch on iphone
 const App = () => {
@@ -33,8 +34,9 @@ const App = () => {
       //  this would be thhe key and the value, so the newdate is the key and the value iss 2000
       //  432423432432: 2000
       //  this is the array of objects
-        {[new Date()]: 2000},
-        {[new Date() - 1]: 2500},
+      //  with moment, we get the data and subtract, the days from the array, so basically means, removing them
+        {[moment()]: 2000},
+        {[moment().subtract(1, 'days')]: 2500},
     ])
     // works state is array of objects
     const [gigs, setGigs] = useState([
