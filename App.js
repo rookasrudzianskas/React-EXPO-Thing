@@ -141,7 +141,7 @@ const App = () => {
           ...data,
           {
           date: moment().format('LL'),
-              amount: amount
+              amount: Number(amount)
           }
       ]);
       // erases what we have typed
