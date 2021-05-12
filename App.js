@@ -35,23 +35,34 @@ const App = () => {
       //  432423432432: 2000
       //  this is the array of objects
       //  with moment, we get the data and subtract, the days from the array, so basically means, removing them
-        {[moment().format('LL')]: 2000},
-        {[moment().subtract(1, 'days')]: 1500},
-        {[moment().subtract(1, 'days')]: 2500},
-        {[moment().subtract(1, 'days')]: 3500},
-        {[moment().subtract(2, 'days')]: 4500},
-        {[moment().subtract(2, 'days')]: 5500},
+        { date: moment().format('LL'), amount: 2000},
+        { date: moment().subtract(1, 'days').format('LL'), amount: 1500},
+        { date: moment().subtract(1, 'days').format('LL'), amount: 2500},
+        { date: moment().subtract(1, 'days').format('LL'), amount: 3500},
+        { date: moment().subtract(2, 'days').format('LL'), amount: 4500},
+        { date: moment().subtract(2, 'days').format('LL'), amount: 5500},
     ])
+
+    //==========================================================================
 
     // grouping is going to make, that if we have the same days and the amounts added at that day is going to have sum of all the previrous amounts,
     // Like following and form make it to smaller aray
     // {[moment().subtract(1, 'days')]: 1500},
     // {[moment().subtract(2, 'days')]: 4500},
 
-    const groupBy = () => {
-        
-    }
-
+    // passing array as the first argument, and length
+    // and groups by the
+    // this one connects the same dates, to one object
+    const groupBy = (array, key) =>
+             array.reduce((rv, x) => {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+            }, {});
+//
+//     console.log(groupBy(['one', 'two', 'three'], 'length'));
+//
+// // => {3: ["one", "two"], 5: ["three"]}
+    //==========================================================================
 
     // works state is array of objects
     const [gigs, setGigs] = useState([
@@ -69,28 +80,37 @@ const App = () => {
 
     //==========================================================================
 
-    const getDates = () => data.map(pair => Object.keys(pair)[0]);
-        // this function should get the [momemnt()] <-> date as in the section mentioned below, the array from the dates just
-        // our final result from this function should be to return the [date1, date2, date3, date4]
-        // in this line we need to get the key from the array of objects, just the key, which is the date
-        // this is going to map per all the data objects in data array, and get the keys of each one, and return the array, so we grab the 1element, which is 0
-        // example, what it returns ['10/29/2021'] -> '10/29/2021']
+    const getDates = () => data.map(pair => pair.date);
+    // we just get the date from the data object
     //==========================================================================
 
     //==========================================================================
 
-    const getAmounts = () => data.map(pair => Object.values(pair)[0]);
-    // this function should get the [2000] <-> amount as in the section mentioned below, the array from the amounts just
-    // our final result from this function should be to return the [34343, 3213, 343243, 34324]
-    // in this line we need to get the key from the array of objects, just the key, which is the amount
-    // this is going to map per all the amount objects in data array, and get the keys of each one, and return the array, so we grab the 1element, which is 0
-    // example, what it returns ['231232'] -> '342341'
-    // the values, instead of keys, because we have to get the keys
+    const getAmounts = () => data.map(pair => pair.amount);
+    // we just get the amount from the data object
     //==========================================================================
+
+
+    const transformDate = (groupedData) => {
+        const transformedArray = [];
+        // for each pair, sum up the amount, and return it
+        Object.entries(groupedData).forEach(entry => {
+            // entry is what holds all our amounts
+            // takes the second value, the amount
+            // this is going to get us the total
+            const total = entry[1].reduce((total, pair) => total + pair.amount, 0);
+            transformedArray.push({date: entry[0], amount: total })
+        })
+        // this will give me array of key and value pairs
+        return transformedArray;
+    }
+
 
     console.log("DEBUG 👉", data);
-    console.log("The dates 🔥", getDates());
-    console.log("The amounts 🚀", getAmounts());
+    console.log("The datess 🔥", getDates());
+    console.log("The amountss 🚀", getAmounts());
+    console.log("The GROUPED VALUES 🤙", Object.entries(groupBy(data, 'date')));
+    console.log("The total grouped values 👽", transformDate(groupBy(data, 'date')));
 
 
     useEffect(() => {
