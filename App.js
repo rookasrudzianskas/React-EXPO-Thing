@@ -175,7 +175,7 @@ const App = () => {
                   width={Dimensions.get('window').width} // from react-native
                   height={220}
                   yAxisLabel={'$'}
-                  yAxisSuffix="k"
+                  // yAxisSuffix="k"
                   yAxisInterval={1}
                   chartConfig={{
                       backgroundColor: '#e26a00',
