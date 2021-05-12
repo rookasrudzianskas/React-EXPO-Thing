@@ -43,6 +43,14 @@ const App = () => {
         { date: moment().subtract(2, 'days').format('LL'), amount: 5500},
     ])
 
+    const [transformedData, setTransformedData] = useState([]); // transformed data as the piece of data
+    //every time I add something new, the useEffect is going to be fired
+
+    useEffect(() => {
+    //    whenever the data changes, this code runs
+        setTransformedData(transformData(groupBy(data, "date")))
+    }, [data])
+
     //==========================================================================
 
     // grouping is going to make, that if we have the same days and the amounts added at that day is going to have sum of all the previrous amounts,
@@ -81,17 +89,17 @@ const App = () => {
     //==========================================================================
 
     // we just get the date from the data object
-    const getDates = () => data.map(pair => pair.date);
+    const getDates = () => transformedData.map(pair => pair.date);
     //==========================================================================
 
     //==========================================================================
 
-    const getAmounts = () => data.map(pair => pair.amount);
+    const getAmounts = () => transformedData.map(pair => pair.amount);
     // we just get the amount from the data object
     //==========================================================================
 
 
-    const transformDate = (groupedData) => {
+    const transformData = (groupedData) => {
         const transformedArray = [];
         // for each pair, sum up the amount, and return it
         Object.entries(groupedData).forEach(entry => {
@@ -110,7 +118,7 @@ const App = () => {
     console.log("The datess 🔥", getDates());
     console.log("The amountss 🚀", getAmounts());
     console.log("The GROUPED VALUES 🤙", Object.entries(groupBy(data, 'date')));
-    console.log("The total grouped values 👽", transformDate(groupBy(data, 'date')));
+    console.log("The total grouped values 👽", transformData(groupBy(data, 'date')));
 
 
     useEffect(() => {
