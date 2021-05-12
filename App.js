@@ -107,10 +107,10 @@ const App = () => {
             // takes the second value, the amount
             // this is going to get us the total
             const total = entry[1].reduce((total, pair) => total + pair.amount, 0);
-            transformedArray.push({date: moment(entry[0]).format('DD'), amount: total })
+            transformedArray.push({date: moment(entry[0]).format('MM/DD'), amount: total })
         })
         // takes one and the second value, we make comparison, and the winner takes 1st place
-        const sortedArray = transformedArray.sort((a, b) => a['date'] - (b['date']))
+        const sortedArray = transformedArray.sort((a, b) => moment(a['date']).diff(moment(b['date'])))
         // this will give me array of key and value pairs
         return sortedArray;
     }
@@ -174,7 +174,7 @@ const App = () => {
                   }}
                   width={Dimensions.get('window').width} // from react-native
                   height={220}
-                  yAxisLabel={'$'}
+                  yAxisLabel='$'
                   // yAxisSuffix="k"
                   yAxisInterval={1}
                   chartConfig={{
