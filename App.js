@@ -110,7 +110,7 @@ const App = () => {
             transformedArray.push({date: moment(entry[0]).format('DD'), amount: total })
         })
         // takes one and the second value, we make comparison, and the winner takes 1st place
-        const sortedArray = transformedArray.sort((a, b) => moment(a['date']).diff(moment(b['date'])))
+        const sortedArray = transformedArray.sort((a, b) => a['date'] - (b['date']))
         // this will give me array of key and value pairs
         return sortedArray;
     }
