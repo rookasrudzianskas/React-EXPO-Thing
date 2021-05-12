@@ -28,6 +28,14 @@ const App = () => {
     const [amount, setAmount] = useState();
     // total state
     const [total, setTotal] = useState(0);
+    // data to get the real data chat
+    const [data, setData] = useState([
+      //  this would be thhe key and the value, so the newdate is the key and the value iss 2000
+      //  432423432432: 2000
+      //  this is the array of objects
+        {[new Date()]: 2000},
+        {[new Date() - 1]: 2500},
+    ])
     // works state is array of objects
     const [gigs, setGigs] = useState([
         {
@@ -41,6 +49,7 @@ const App = () => {
             timestamp: new Date(),
         },
     ]);
+    console.log("DEBUG 👉", data)
 
 
     useEffect(() => {
@@ -74,6 +83,12 @@ const App = () => {
 
 
           <View>
+              {/*We have to make the data structure like this, to make our chart to readjust the changes in useEffect*/}
+              {/*
+                [
+                {Date, 299},
+                {Date2, 434
+                */}
 
               <Text>
                   Bezier Line Chart
@@ -83,14 +98,15 @@ const App = () => {
                       labels: ['MON', 'TUE', 'WED', 'THU', 'FRI'],
                       datasets: [{
                           data: [
-                             // we take the first elemet from the gigs array (state)
-                             Math.random() * 100,
-                             Math.random() * 100,
-                             Math.random() * 100,
-                             Math.random() * 100,
-                             Math.random() * 100,
+                              // we take the first elemet from the gigs array (state)
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
+                              Math.random() * 100,
                           ]
-                      }]
+                      }
+                      ]
                   }}
                   width={Dimensions.get('window').width} // from react-native
                   height={220}
@@ -101,7 +117,7 @@ const App = () => {
                       backgroundColor: '#e26a00',
                       backgroundGradientFrom: 'green',
                       backgroundGradientTo: 'blue',
-                      decimalPlaces: 1, // optional, defaults to 2dp
+                      decimalPlaces: null, // optional, defaults to 2dp
                       color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                       labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                       style: {
