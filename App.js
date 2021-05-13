@@ -93,7 +93,7 @@ const App = () => {
     //==========================================================================
 
     //==========================================================================
-
+    // it gives the amount, just by accessing the key
     const getAmounts = () => transformedData.map(pair => pair.amount);
     // we just get the amount from the data object
     //==========================================================================
