@@ -164,7 +164,7 @@ const App = () => {
               {/*
                 [
                 {Date, 299},
-                {Date2, 434
+                {Date2, 434,
                 */}
 
               <Text>
