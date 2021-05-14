@@ -36,11 +36,11 @@ const App = () => {
       //  this is the array of objects
       //  with moment, we get the data and subtract, the days from the array, so basically means, removing them
         { date: moment().format('LL'), amount: 2000},
-        { date: moment().subtract(1, 'days').format('LL'), amount: 1500},
-        { date: moment().subtract(1, 'days').format('LL'), amount: 2500},
-        { date: moment().subtract(1, 'days').format('LL'), amount: 3500},
-        { date: moment().subtract(2, 'days').format('LL'), amount: 4500},
-        { date: moment().subtract(2, 'days').format('LL'), amount: 5500},
+        { date: moment().subtract(1, 'days').format('LL'), amount: 1000},
+        { date: moment().subtract(1, 'days').format('LL'), amount: 2000},
+        { date: moment().subtract(1, 'days').format('LL'), amount: 3000},
+        { date: moment().subtract(2, 'days').format('LL'), amount: 4000},
+        { date: moment().subtract(2, 'days').format('LL'), amount: 5000},
     ])
 
     const [transformedData, setTransformedData] = useState([]); // transformed data as the piece of data
@@ -76,12 +76,12 @@ const App = () => {
     const [gigs, setGigs] = useState([
         {
             description: "Freelance",
-            amount: 434,
+            amount: 400,
             timestamp: new Date(),
         },
         {
             description: "Freelance",
-            amount: 434,
+            amount: 400,
             timestamp: new Date(),
         },
     ]);
