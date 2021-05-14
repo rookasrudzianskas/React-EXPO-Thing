@@ -10,8 +10,10 @@ import {
     StackedBarChart
 } from 'react-native-chart-kit'
 import moment from "moment";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Homepage = () => {
+const Homepage = ({ navigation }) => {
 
     const chartConfig = {
         backgroundGradientFrsom: '#1E2923',
@@ -157,7 +159,7 @@ const Homepage = () => {
                 <Text style={styles.titleText}>Lets build amazing app</Text>
             </View>
 
-
+                <Button title="Login" onPress={() => navigation.navigate("Login")} />
             <View>
                 {/*We have to make the data structure like this, to make our chart to readjust the changes in useEffect*/}
                 {/*
