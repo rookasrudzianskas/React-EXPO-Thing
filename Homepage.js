@@ -151,7 +151,7 @@ const Homepage = () => {
 
     return (
         // safe area
-        <View>
+        <SafeAreaView>
             {/* divs, in here it is views*/}
             <View>
                 <Text style={styles.titleText}>Lets build amazing app</Text>
@@ -227,7 +227,7 @@ const Homepage = () => {
             ))}
 
 
-        </View>
+        </SafeAreaView>
     );
 }
 
