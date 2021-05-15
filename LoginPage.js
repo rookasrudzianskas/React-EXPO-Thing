@@ -10,7 +10,7 @@ const LoginPage = ({navigation}) => {
     const [password, setPassword] = useState('');
 
     const login = () => {
-
+        // checks for the login data
         if(username === "rokas" && password === "admin") {
             navigation.navigate('Home');
         }
