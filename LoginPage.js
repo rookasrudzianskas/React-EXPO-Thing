@@ -8,6 +8,15 @@ const LoginPage = ({navigation}) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const login = () => {
+
+        if(username === "rokas" && password === "admin") {
+            navigation.navigate('Home');
+        }
+
+    };
+
     return (
         <View>
             <Text>I am Login</Text>
@@ -27,7 +36,7 @@ const LoginPage = ({navigation}) => {
                 placeholder="Enter a password"
                 onChangeText={text => setPassword(text)}
             />
-            <Button title="Go back" onPress={() => navigation.goBack()}/>
+            <Button title="Login" onPress={login}/>
         </View>
     )
 };
