@@ -12,7 +12,7 @@ const App = () => {
     return (
         // safe area
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Home">
+                <Stack.Navigator initialRouteName="Login">
                     <Stack.Screen name="Home" component={Homepage} />
                     <Stack.Screen name="Login" component={LoginPage} options={{
                         title: "Sign in or Sign up"
